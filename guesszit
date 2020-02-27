@@ -1,0 +1,60 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int level=1;
+
+void type1()
+{
+    cout << "round " << level<< '\n';
+    cout << "Enter your number between 1 and 100: " << '\n';
+    srand(time(NULL));
+    int result=(rand() % 100) +1;
+    int number;
+    do
+    {
+        cin >> number;
+        if(number < result) cout << "Your number is lower. " << '\n';
+        else if (number > result) cout << "Your number is higher. "<< '\n';
+        else cout << "Congratulation! You win " << "('3') " <<'\n' << '\n';
+    }
+    while (number != result);
+    ++ level;
+}
+
+void type2()
+{
+    cout << "round " << level<< '\n';
+    cout << "Choose your number. \n";
+    int d=1,c=100;
+    char data;
+    int g=-1;
+    while (data != '=')
+    {
+        if (d >= c || g==(d+c)/2) {cout << "number isn't exist \n";break;}
+        g=(d+c)/2;
+        cout <<"is your number : " << g <<'\n';
+        cout << "< : it's lower than my number \n"<<"> : it's higher than my number \n"<< "= : it's correct \n";
+        cin >> data;
+        if (data=='<') d=g;
+            else c=g;
+    }
+    ++level;
+}
+
+int main ()
+{
+    char request;
+    int number;
+    do
+        {
+            cout << "Choose type of game \n" << "1: player \n" << "2: host \n";
+            cin >> number;
+            if (number % 2) type1();
+                else type2();
+            cout << "Do you want to play again ? (y/n)   " <<'\n';
+            cin >> request;
+        }
+    while (request == 'y');
+}
